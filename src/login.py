@@ -44,7 +44,7 @@ class LoginHandler(tornado.web.RequestHandler):
 class LogoutHandler(tornado.web.RequestHandler):
 	def get(self):
 		self.clear_all_cookies()
-		time.sleep(3)
+		time.sleep(1.5)
 		self.redirect("/login")
 
 if __name__ == '__main__':

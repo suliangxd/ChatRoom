@@ -38,14 +38,18 @@ class RegisterHandler(tornado.web.RequestHandler):
 		phone = self.get_argument('phone')
 		if password != rep_password:
 			self.write("两次密码输入不一致")
+			self.render('register.html')
 
-		if not self.check_is_used(username):
+		if not self.check_is_used(username):#用户名合法
 			sql = "insert into user (username, password, registed_time, email, phone) \
 				   values ('%s', '%s', datetime('now'), '%s', '%s')" %(username, password, email, phone)
 			conn.execute(sql)
 			conn.commit()
 			self.write("注册成功")
-
+			time.sleep(1.5)
+			self.set_secure_cookie("username", username)
+			cookie_user = self.get_argument('username')
+			self.render('login.html', cookieUser=cookie_user)
 		else:
 			self.write("该用户名已被使用")
 			self.render('register.html')
