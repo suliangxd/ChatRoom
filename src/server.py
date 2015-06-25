@@ -9,7 +9,8 @@ import sqlite3
 import datetime
 import time
 
-from login import LoginHandler, LogoutHandler
+from chatroom import ChatHandler
+from login 	  import LoginHandler, LogoutHandler
 from register import RegisterHandler
 
 from tornado.options import define, options
@@ -20,7 +21,8 @@ class Application(tornado.web.Application):
 		handlers = [(r'/login', LoginHandler),
 					(r'/',LoginHandler),
 					(r'/logout', LogoutHandler),
-					(r'/register', RegisterHandler)
+					(r'/register', RegisterHandler),
+					(r'/chatroom', ChatHandler)
 					]
 		settings = dict(
 					cookie_secret =
@@ -35,4 +37,3 @@ if __name__ == "__main__":
 	http_server = tornado.httpserver.HTTPServer(Application())
 	http_server.listen(options.port)
 	tornado.ioloop.IOLoop.instance().start()
-

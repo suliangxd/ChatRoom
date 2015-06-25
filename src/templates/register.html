@@ -14,9 +14,9 @@
 				alert("用户名不能为空");
 				return false;
 			}
-			var reg_filter=/^s*[.A-Za-z0-9_-]{5,20}s*$/;
+			var reg_filter=/^s*[.A-Za-z0-9_-]{4,20}s*$/;
 			if (!reg_filter.test(username)){
-				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于5个字符，不超过20个字符，注意不要使用空格");
+				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于4个字符，不超过20个字符，注意不要使用空格");
 				return false;
 			}
 			if (password == null || password == ""){
@@ -24,7 +24,7 @@
 				return false;
 			}
 			if (!reg_filter.test(password)){
-				alert("密码填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于5个字符，不超过15个字符，注意不要使用空格");
+				alert("密码填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于4个字符，不超过15个字符，注意不要使用空格");
 				return false;	
 			}
 			if (rep_password == null || rep_password == ""){
