@@ -5,15 +5,11 @@
 	<script type="text/javascript">
 
 		function vaildateForm() {
-			var username = document.forms["registerForm"]["username"].value;
+			//var username = document.forms["registerForm"]["username"].value;
 			var password = document.forms["registerForm"]["password"].value;
 			var rep_password = document.forms["registerForm"]["rep_password"].value;
 			var email = document.forms["registerForm"]["email"].value;
 			var phone = document.forms["registerForm"]["phone"].value;
-			if (username == null || username == ""){
-				alert("用户名不能为空");
-				return false;
-			}
 			var reg_filter=/^s*[.A-Za-z0-9_-]{4,20}s*$/;
 			if (!reg_filter.test(username)){
 				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于4个字符，不超过20个字符，注意不要使用空格");
@@ -58,7 +54,6 @@
 			return true;
 		}
 		function reset() {
-			$('#username').val('');
 			$('#password').val('');
 			$('#rep_password').val('');
 			$('#email').val('');
@@ -68,10 +63,9 @@
 </head>
 
 <body >
-	<h1>注册</h1><br><br>
 	<form name="registerForm"  action="" onsubmit="return vaildateForm();" onreset="reset()" method="post">
-		用户名： 
-		<input type="text" name="username" id="username" size="24"  maxlength="24"></br></input>
+		<h1>修改个人信息</h1><br><br>
+		用户名： {{cookieUser}}<br>
 		密码： 
 		<input type="password" name="password" id="password" size="24"  maxlength="24"></br></input>
 		重复密码：

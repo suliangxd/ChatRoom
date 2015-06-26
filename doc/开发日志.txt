@@ -15,4 +15,5 @@
 		1.简单功能性的代码后期完成（管理员特权，用户修改个人信息）
 		2.聊天室采用tornado+redis实现，ajax longpolling / websocket还没确定 
 		3.登录/注册模块cgi,server分离（目前全部放在cgi）
-	
+5. 2015.6.26 7:47PM
+	 1.完成管理员前端和后台

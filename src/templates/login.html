@@ -30,6 +30,7 @@
 
 <body>
 	{%if not cookieUser%}
+	<h1>登录</h1><br><br>
 	<form name="loginForm"  action="/login" onsubmit="return vaildateForm();" method="post">
 		用户名： 
 		<input type="text" name="username" id="username" size="24"  maxlength="24"></br></input>

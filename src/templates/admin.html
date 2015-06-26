@@ -1,0 +1,53 @@
+<html lang="en">
+<heda>
+	<meta charset="utf-8">
+	<title>管理</title>
+	<script type="text/javascript">
+
+		function check(username){
+			if (username == null || username == ""){
+				alert("用户名不能为空");
+				return false;
+			}
+			var reg_filter=/^s*[.A-Za-z0-9_-]{4,20}s*$/;
+			if (!reg_filter.test(username)){
+				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于4个字符，不超过20个字符，注意不要使用空格");
+				return false;
+			}
+			return true;
+		}
+		function vaildateForm1() {
+			var username = document.forms["setVIPForm"]["username"].value;
+			return check(username);
+		}
+		function vaildateForm2() {
+			var username = document.forms["cancelVIPForm"]["username"].value;
+			return check(username);
+		}
+		function vaildateForm3() {
+			var username = document.forms["deleteUserForm"]["username"].value;
+			return check(username);
+		}
+	</script>
+</heda>
+
+<body>
+	<h1>管理员</h1>
+	<form name="setVIPForm"  action="/admin" onsubmit="return vaildateForm1();" method="post">
+		<b>设置用户为vip</b>
+		<input type="text" name="username1" id="username1" size="24"  maxlength="24"></br></input>
+		<input type="submit" value="提交" id="submit">
+	</form>
+
+	<form name="cancelVIPForm" action="/admin" onsubmit="return validateForm2();" method="post">
+		<b>取消用户为vip</b>
+		<input type="text" name="username2" id="username2" size="24"  maxlength="24"></br></input>
+		<input type="submit" value="提交" id="submit">
+	</form>
+
+	<form name="deleteUserForm" action="/admin" onsubmit="return validateForm3();" method="post">
+		<b>删除用户</b>
+		<input type="text" name="username3" id="username3" size="24"  maxlength="24"></br></input>
+		<input type="submit" value="提交" id="submit">
+	</form>
+</body>

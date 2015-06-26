@@ -1,0 +1,5 @@
+其他项目记录：
+1. tornado-chat: tornado/redis+ajax polling
+2. chat-master: py+redis(非tornado)
+3. TornadoRedisChat: websocket+redis
+目前打算采用项目1

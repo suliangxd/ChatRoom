@@ -12,7 +12,7 @@ import time
 from chatroom import ChatHandler
 from login 	  import LoginHandler, LogoutHandler
 from register import RegisterHandler
-
+from user 	  import ModifyHandler
 from tornado.options import define, options
 define("port", default=8000, help="run on given port", type=int)
 
@@ -22,7 +22,8 @@ class Application(tornado.web.Application):
 					(r'/',LoginHandler),
 					(r'/logout', LogoutHandler),
 					(r'/register', RegisterHandler),
-					(r'/chatroom', ChatHandler)
+					(r'/chatroom', ChatHandler),
+					(r'/modify', ModifyHandler)
 					]
 		settings = dict(
 					cookie_secret =
