@@ -57,7 +57,7 @@ class AdminHandler(tornado.web.RequestHandler):
 			self.write("取消成功")
 			self.render("admin.html")
 		if delete_username:
-			sql = "delete from user where username = '%s' " %s(delete_username)
+			sql = "delete from user where username = '%s' " %(delete_username)
 			conn.execute(sql)
 			conn.commit()
 			self.write("删除成功")
