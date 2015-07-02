@@ -41,13 +41,13 @@ div.content {
     background: #fff;
 }
 #login {
-    padding-top: 200px;
+    padding-top: 120px;
 }
 .hide {
     display: none;
 }
 footer {
-    position: relative;
+    position: absolute;
     margin: 0 -2.5%;
     width: 100%;
     background: #fff;

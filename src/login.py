@@ -33,7 +33,7 @@ class LoginHandler(tornado.web.RequestHandler):
 		username = self.get_argument('username')
 		password = self.get_argument('password')
 		if self.check_user(username, password): #密码正确
-			self.set_secure_cookie("username", username)
+			self.set_secure_cookie("username", username,1)
 			cookie_user = self.get_argument('username')
 			self.render('login.html', cookieUser=cookie_user)
 

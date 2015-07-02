@@ -2,6 +2,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>注册</title>
+	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
 	<script type="text/javascript">
 
 		function vaildateForm() {
@@ -68,21 +71,69 @@
 </head>
 
 <body >
-	<h1>注册</h1><br><br>
-	<form name="registerForm"  action="" onsubmit="return vaildateForm();" onreset="reset()" method="post">
-		用户名： 
-		<input type="text" name="username" id="username" size="24"  maxlength="24"></br></input>
-		密码： 
-		<input type="password" name="password" id="password" size="24"  maxlength="24"></br></input>
-		重复密码：
-		<input type="password" name="rep_password" id="rep_password" size="24"  maxlength="24"></br></input>
-		邮箱：  
-		<input type="text" name="email" id="email" size="24"  maxlength="24"></br></input>
-		手机：  
-		<input type="text" name="phone" id="phone" size="24"  maxlength="24"></br></input>
-		
-		<input type="submit" value="提交" id="submit">
-		<input type="reset"  value="重置" id="reset">
-	</form>
+<body class="Grid">
+<div class="ui fixed transparent inverted main menu">
+    <div class="container">
+        <div class="title item">
+            <b>ChatRoom</b> 在线聊天系统
+        </div>
+
+        <div class="right menu">
+            <div class="title item">
+                <a  href="/login" title="返回登录">
+                	返回登录
+            	</a>
+            </div>
+        </div>
+
+	</div>
+</div>
+
+ <div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">注册</h3>
+						<form name="registerForm"  action="" onsubmit="return vaildateForm();
+						"onreset="reset()" method="post">
+							<div class="field">
+                        		<label>用户名</label>
+                        		<input id="reg_username" placeholder="用户名" type="text">
+                    		</div>
+							<div class="field">
+                        		<label>密码</label>
+                        		<input id="reg_pwd" type="password">
+                    		</div>
+							<div class="field">
+                        		<label>重复密码</label>
+                        		<input id="reg_pwd_repeat" type="password">
+                    		</div>
+							<div class="field">
+                        		<label>邮箱</label>
+                        		<input id="reg_pwd_repeat" type="password">
+                    		</div>
+							<div class="field">
+                        		<label>手机号码</label>
+                        		<input id="phone" type="password">
+                    		</div>
+							<div class="inline field">
+		                        <div class="ui checkbox">
+		                            <input type="checkbox" id="terms">
+		                            <label for="terms">我同意mikesu's WeChat网的服务条款。</label>
+		                        </div>
+                    		</div>
+         					<div class="ui blue registe_submit button">
+								<input type="submit" value="提交" id="submit">
+        					</div>
+              				<div class="ui blue registe_submit button">
+								<input type="reset"  value="重置" id="reset">
+        					</div>
+                  		</form>
+				</div>
+    		</div>
+		</div>
+	</div>
+</div>
 </body>
 <html>
