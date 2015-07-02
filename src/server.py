@@ -31,6 +31,8 @@ class Application(tornado.web.Application):
 					"bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
 					template_path =
 					os.path.join(os.path.dirname(__file__), "templates"),
+					static_path =
+					os.path.join(os.path.dirname(__file__), "static"),
 					)
 		tornado.web.Application.__init__(self, handlers, **settings)
 

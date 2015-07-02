@@ -1,7 +1,12 @@
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>登录</title>
+    <link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
+
 	<script type="text/javascript">
 		function vaildateForm() {
 			var username = document.forms["loginForm"]["username"].value;
@@ -30,18 +35,56 @@
 
 <body>
 	{%if not cookieUser%}
-	<h1>登录</h1><br><br>
+    <div class="ui fixed transparent inverted main menu">
+    <div class="container">
+        <div class="title item">
+            <b>We Chat</b> 在线聊天系统
+        </div>
+
+        <div class="right menu">
+            <div class="title item">
+                Backbonejs交流群：308466740
+            </div>
+        </div>
+        <div id="user_info" class="right menu hide">
+            <div class="title item">
+                <i class="icon user"></i>
+                <label id="username">the5fire</lable>
+            </div>
+            <a class="popup icon github item" href="/logout" title="退出登录">
+                退出登录
+            </a>
+        </div>
+    </div>
+</div>
+    <div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">登录</h3>
 	<form name="loginForm"  action="/login" onsubmit="return vaildateForm();" method="post">
-		用户名： 
-		<input type="text" name="username" id="username" size="24"  maxlength="24"></br></input>
-		密码： 
-		<input type="password" name="password" id="password" size="24"  maxlength="24"></br></input>
+		<div class="field">
+                        <label>用户名</label>
+                        <input name="username" id="username" placeholder="用户名" type="text">
+                    </div>
+		<div class="field">
+                        <label>密码</label>
+                        <input name="password" id="password" type="password">
+                    </div>
+       	<div class="ui blue login_submit button">
 		<input type="submit" value="登录" id="submit">
+		</div>
 		<a href='/register'> 无帐号，请点击注册 </a>
 	</form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 	{%else%}
 		<!-- 跳转进入聊天室-->
-		<meta http-equiv="refresh" content="1; url=/chatroom" />
+		<meta http-equiv="refresh" content="1;  /chatroom">
 	{%end%}
 </body>
 </html>
