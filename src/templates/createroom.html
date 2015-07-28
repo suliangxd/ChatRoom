@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>聊天室</title>
+	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
+
+    <script type="text/javascript">
+        function vaildateForm() {
+            var roomname = document.forms["createRoomForm"]["roomname"].value;
+            if (roomname == null || roomname == ""){
+                alert("用户名不能为空");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+	<div class="ui fixed transparent inverted main menu">
+        <div class="container">
+            <div class="title item">
+                <b>{{cookieUser}}&nbsp</b> 在线聊天系统 
+            </div>
+
+            <div class="right menu">
+                <div class="title item">
+                    {%if usertype == 2%}
+						<b><a href='/admin'>管理</a></b>
+					{%end%}
+					{%if usertype != 0%}
+						&nbsp <b><a href='/create'>创建聊天室</a></b>
+					{%end%}
+                    &nbsp<b><a href="/modify"> 修改个人信息 </a></b>
+                    &nbsp<b><a href="/logout"> 注销 </a></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if not Error%}
+    <div id="wrapper" style="display: block; z-index: 998;">
+        <div class="container">
+            <div id="login" class="ui two column relaxed grid">
+                <div class="column">
+                    <div class="ui fluid form segment">
+                        <h3 class="ui header">ADD Room</h3>
+                           <form name="createRoomForm"  action="/create" onsubmit="return vaildateForm();" method="post">
+                                <div class="field">
+                                    <label>创建新聊天室</label>
+                                    <input name="roomname" id="roomname" placeholder="roomname" type="text">
+                                </div>
+                                <div class="ui blue login_submit button">
+                                    <input type="submit" value="ADD" id="submit" >
+                                </div>
+                                    <a href='/chatroom'> 返回 </a>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h4 class="ui header">创建失败</h4>
+                        <h3><b>聊天室名字重复!</b></h3> <br><br>
+                        <p>
+                        <a href='/creat'> 重新创建 </a>
+                        </p>
+                        <br>
+                        <p>
+                        <a href="/chatroom"> 返回 </a>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+    {% end%}
+</body>>

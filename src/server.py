@@ -9,7 +9,7 @@ import sqlite3
 import datetime
 import time
 
-from chatroom import ChatHandler
+from chatroom import ChatHandler, CreateRoomHandler
 from login 	  import LoginHandler, LogoutHandler
 from register import RegisterHandler
 from user 	  import ModifyHandler, AdminHandler
@@ -24,7 +24,8 @@ class Application(tornado.web.Application):
 					(r'/register', RegisterHandler),
 					(r'/chatroom', ChatHandler),
 					(r'/modify', ModifyHandler),
-					(r'/admin', AdminHandler)
+					(r'/admin', AdminHandler),
+					(r'/create', CreateRoomHandler)
 					]
 		settings = dict(
 					cookie_secret =
