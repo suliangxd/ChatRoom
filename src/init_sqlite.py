@@ -19,6 +19,15 @@ CREATE TABLE IF NOT EXISTS user(
 	"reverse2" varchar(50) DEFAULT NULL,
 	UNIQUE("username") 
 );
+
+CREATE TABLE IF NOT EXISTS room(
+	"roomid" integer PRIMARY KEY AUTOINCREMENT,
+	"roomname" varchar(50) NOT NULL,
+	"created_time" datetime NOT NULL,
+    "owner_id" integer NOT NULL,
+    UNIQUE("roomname")
+);
+
 COMMIT;
 """
 

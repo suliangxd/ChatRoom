@@ -80,15 +80,17 @@
 
         <div class="right menu">
             <div class="title item">
+                <b>
                 <a  href="/login" title="返回登录">
                 	返回登录
-            	</a>
+                </a>
+                </b>
             </div>
         </div>
 
 	</div>
 </div>
-
+{%if not Error%}
  <div id="wrapper" style="display: block; z-index: 998;">
     <div class="container">
         <div id="login" class="ui two column relaxed grid">
@@ -99,23 +101,23 @@
 						"onreset="reset()" method="post">
 							<div class="field">
                         		<label>用户名</label>
-                        		<input id="reg_username" placeholder="用户名" type="text">
+                        		<input name="username" id="username" placeholder="用户名" type="text">
                     		</div>
 							<div class="field">
                         		<label>密码</label>
-                        		<input id="reg_pwd" type="password">
+                        		<input name="password" id="password" type="password">
                     		</div>
 							<div class="field">
                         		<label>重复密码</label>
-                        		<input id="reg_pwd_repeat" type="password">
+                        		<input name="rep_password" id="rep_password" type="password">
                     		</div>
 							<div class="field">
                         		<label>邮箱</label>
-                        		<input id="reg_pwd_repeat" type="password">
+                        		<input name="email" id="email" type="text">
                     		</div>
 							<div class="field">
                         		<label>手机号码</label>
-                        		<input id="phone" type="password">
+                        		<input name="phone" id="phone" type="text">
                     		</div>
 							<div class="inline field">
 		                        <div class="ui checkbox">
@@ -135,5 +137,20 @@
 		</div>
 	</div>
 </div>
+{%else%}
+ <div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">注册失败</h3>
+                        <h4><b>用户名重复</b></h4> <br><br>
+                        <a href='/register'> 重新注册 </a>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+{%end%}
 </body>
 <html>

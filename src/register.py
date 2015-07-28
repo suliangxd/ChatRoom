@@ -28,7 +28,7 @@ class RegisterHandler(tornado.web.RequestHandler):
 		return False;
 
 	def get(self):
-		self.render('register.html')
+		self.render('register.html',Error=False)
 	
 	def post(self):
 		username = self.get_argument('username')
@@ -52,7 +52,7 @@ class RegisterHandler(tornado.web.RequestHandler):
 			self.render('login.html', cookieUser=cookie_user)
 		else:
 			self.write("该用户名已被使用")
-			self.render('register.html')
+			self.render('register.html',Error=True)
 
 
 if __name__ == '__main__':

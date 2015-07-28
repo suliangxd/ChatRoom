@@ -2,18 +2,50 @@
 <head>
 	<meta charset="utf-8">
 	<title>聊天室</title>
+	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
+
 </head>
 
 <body>
-	<h1>聊天室</h1><br>
-	<h2>Welcome {{cookieUser}}</h2><br>
-	{%if usertype == 2%}
-		&nbsp<a href='/admin'>管理</a>&nbsp
-	{%end%}
-	{%if usertype != 0%}
-		&nbsp <a href='/create'>创建聊天室</a> <br><br>
-	{%end%}
-	&nbsp <a href='/modify'> 修改个人信息 </a> &nbsp
-	&nbsp <a href='/logout'> 注销  </a>
+	<div class="ui fixed transparent inverted main menu">
+        <div class="container">
+            <div class="title item">
+                <b>{{cookieUser}}&nbsp</b> 在线聊天系统 
+            </div>
 
+            <div class="right menu">
+                <div class="title item">
+                    {%if usertype == 2%}
+						<b><a href='/admin'>管理</a></b>
+					{%end%}
+					{%if usertype != 0%}
+						&nbsp <b><a href='/create'>创建聊天室</a></b>
+					{%end%}
+                    &nbsp<b><a href="/modify"> 修改个人信息 </a></b>
+                    &nbsp<b><a href="/logout"> 注销 </a></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--room列表-->
+    {% for room in roomlist %}
+    	<!-- #room[1][0]:roomid,[1][1]:roomname,[1][2]:created_time,[1][3]:userid-->
+    	<!-- room[0]:owner_name-->
+	    <a href="/topic/{{room[0]}}">
+	        <div class="column">
+	            <div class="ui segment">
+	                <br>
+	                <h3>{{room[1][1]}}</h3>
+	                <p>
+	                创建者：{{room[0]}} 
+	                </p>
+	                <p>
+	                创建时间：{{room[1][2]}}
+	                </p>
+	            </div>
+	        </div>
+	    </a>
+    {% end %}
 </body>

@@ -10,6 +10,22 @@ def get_usertype(username):
 	cur.execute(sql)
 	usertype = cur.fetchone()
 	return usertype[0]
+#获取room表中的所有数据,返回[roomlist,room_owner]
+def getRoomList():
+	sql = "select * from room"
+	cursor = conn.execute(sql)
+	roomlist = list(cursor)
+
+	roominfo = []
+	#room[0]:roomid,[1]:roomname,[2]:created_time,[3]:owner_id
+	for room in roomlist:
+		sql = "select username from user where userid = %d " %(room[3])
+		cursor = conn.execute(sql)
+		for row in cursor:
+			roominfo.append([row[0],list(room)])
+    		break
+
+	return roominfo
 
 #example
 if __name__ == "__main__":
