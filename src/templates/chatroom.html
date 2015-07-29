@@ -30,22 +30,23 @@
         </div>
     </div>
     <!--room列表-->
-    {% for room in roomlist %}
-    	<!-- #room[1][0]:roomid,[1][1]:roomname,[1][2]:created_time,[1][3]:userid-->
-    	<!-- room[0]:owner_name-->
-	    <a href="/topic/{{room[0]}}">
-	        <div class="column">
-	            <div class="ui segment">
-	                <br>
-	                <h3>{{room[1][1]}}</h3>
-	                <p>
-	                创建者：{{room[0]}} 
-	                </p>
-	                <p>
-	                创建时间：{{room[1][2]}}
-	                </p>
-	            </div>
-	        </div>
-	    </a>
-    {% end %}
+    <div class="ui grid column three">
+	    {% for room in roomlist %}
+	    	<!-- #room[0]:roomid,[1]:roomname,[2]:created_time,[3]:userid-->
+	    	<!-- room[4]:owner_name-->
+	    	<div class="column">
+			    <a href="/room/{{room[0]}}">
+		            <div class="ui segment">
+		                <h3>{{room[1]}}</h3>
+		                <p>
+		                创建者：{{room[4]}} 
+		                </p>
+		                <p>
+		                创建时间：{{room[2]}}
+		                </p>
+		            </div>
+			    </a>
+		    </div>
+	    {% end %}
+    </div>
 </body>

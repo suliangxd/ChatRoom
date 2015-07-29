@@ -64,10 +64,10 @@
                                 <label>密码</label>
                                 <input name="password" id="password" type="password">
                             </div>
-       	                    <div class="ui blue login_submit button">
-		                        <input type="submit" value="登录" id="submit">
-		                    </div>
-		                        <a href='/register'> 无帐号，请点击注册 </a>
+       	            
+	                        <input type="submit" value="登录" class="ui blue login_submit button" id="submit">
+                            &nbsp &nbsp &nbsp
+		               		 <a href='/register'> 无帐号，请点击注册 </a>
 	                    </form>
                 </div>
             </div>
@@ -88,7 +88,7 @@
     </footer>
 	{%else%}
 		<!-- 跳转进入聊天室-->
-		<meta http-equiv="refresh" content="1; /chatroom">
+		<meta http-equiv="refresh" content="0; /chatroom">
 	{%end%}
 </body>
 </html>
