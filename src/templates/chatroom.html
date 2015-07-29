@@ -6,11 +6,10 @@
     <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
     <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 	<script>
 	$(document).ready(function(){
 	  $("#post_roominfo").click(function(){
-	    $.post("/room/$("#roomid").val()",
+	    $.post("/room/"+$("#roomid").html(),
 	    {
 	      roomid:$("#roomid").val(),
 	      roomname:$("#roomname").val(),
