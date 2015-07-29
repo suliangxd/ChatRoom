@@ -4,22 +4,7 @@
 	<title>聊天室</title>
 	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
     <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
-    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-	<script>
-	$(document).ready(function(){
-	  $("#post_roominfo").click(function(){
-	    $.post("/room/"+$("#roomid").html(),
-	    {
-	      roomid:$("#roomid").val(),
-	      roomname:$("#roomname").val(),
-	      created_time:$("#created_time").val(),
-	      owner_id:$("#owner_id").val(),
-	      owner_name:$("#owner_name").val()
-	    });
-	  });
-	});
-	</script>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>	
 </head>
 
 <body>
@@ -48,13 +33,8 @@
 	    {% for room in roomlist %}
 	    	<!-- #room[0]:roomid,[1]:roomname,[2]:created_time,[3]:userid-->
 	    	<!-- room[4]:owner_name-->
-	    	<span style="visibility:hidden" id = "roomid"> {{room[0]}} </span>
-	    	<span style="visibility:hidden" id = "roomname"> {{room[1]}} </span>
-	    	<span style="visibility:hidden" id = "created_time"> {{room[2]}} </span>
-	    	<span style="visibility:hidden" id = "owner_id"> {{room[3]}} </span>
-	    	<span style="visibility:hidden" id = "owner_name"> {{room[4]}} </span>
 	    	<div class="column">
-			    <button id = "post_roominfo">
+			    <a href="/room/{{room[0]}}">
 		            <div class="ui segment">
 		                <h3>{{room[1]}}</h3>
 		                <p>

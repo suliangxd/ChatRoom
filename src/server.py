@@ -26,7 +26,7 @@ class Application(tornado.web.Application):
 					(r'/modify', ModifyHandler),
 					(r'/admin', AdminHandler),
 					(r'/create', CreateRoomHandler),
-					(r'/room/(\d+)', ChatHandler)
+					(r'/room/\d*', ChatHandler)
 					]
 		settings = dict(
 					cookie_secret =

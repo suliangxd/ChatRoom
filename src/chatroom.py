@@ -73,18 +73,21 @@ class CreateRoomHandler(tornado.web.RequestHandler):
 		self.redirect("/chatroom")
 #聊天
 class ChatHandler(tornado.web.RequestHandler):
+
 	def get(self):
+		uri = self.request.uri
+		roomid = int(uri[-1])
 		cookie_user = self.get_secure_cookie("username")
 		if cookie_user:
 			usertype = common.get_usertype(cookie_user)
-			self.render('chat.html', cookieUser=cookie_user, usertype = usertype, Error=False)
+			roominfo = common.getRoomInfo(roomid)
+			print roominfo
+			self.render('chat.html', cookieUser=cookie_user, usertype = usertype,
+						roominfo=roominfo)
 		else:
 			self.render('login.html', cookieUser=None, Error = False)
 
 	def post(self):
-		roomid = self.get_argument("roomid")
-		roomname = self.get_argument("roomname")
-		created_time = self.get_argument("created_time")
-		owner_id = self.get_argument("owner_id")
-		owner_name = self.get_argument("owner_name")
-		print "Success:  ",roomid,roomname,created_time,owner_id,owner_name
+		#print self.get_login_url()
+		#print self.reverse_url()
+		return

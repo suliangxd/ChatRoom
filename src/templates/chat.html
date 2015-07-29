@@ -29,4 +29,27 @@
             </div>
         </div>
     </div>
+
+    <!-- Message -->
+    <div  id="message_section" class="ui column grid hide" style="display:none">
+        <div class="column">
+            <div class="circular ui button"><a href="/chatroom">返回列表</a></div>
+            <div class="ui piled blue segment">
+                <h2 class="ui header">
+                    #<i id="message_head">{{roominfo[1]}}</i>#
+                </h2>
+                <div id="message_list" class="ui comments">
+                    <!-- comments section -->
+                </div>
+                <div class="ui reply form">
+                    <div class="field">
+                        <input type="text" id="comment"/>
+                    </div>
+                    <div id="submit" data="" class="ui fluid blue labeled submit icon button">
+                        <i class="icon edit"></i> 我也来说一句！
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>

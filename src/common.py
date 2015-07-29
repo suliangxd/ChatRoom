@@ -17,18 +17,14 @@ def getRoomList():
 
 	cursor = conn.execute(sql)
 	roomlist = list(cursor.fetchall())
-	print roomlist
-	#roominfo = []
-	#room[0]:roomid,[1]:roomname,[2]:created_time,[3]:owner_id
-	#for room in roomlist:
-	#	sql = "select username from user where userid = %d " %(room[3])
-	#	cursor = conn.execute(sql)
-	#	for row in cursor:
-	#		roominfo.append([row[0],list(room)])
-    #		break
-
+	#print roomlist
 	return roomlist
-
+def getRoomInfo(roomid):
+	sql = "select room.roomid,room.roomname,room.created_time,room.owner_id,user.username \
+			from room,user where room.roomid = %d and room.owner_id == user.userid" %(roomid)
+	cursor = conn.execute(sql)
+	roominfo = list(cursor.fetchone())
+	return roominfo
 #example
 if __name__ == "__main__":
 	a = '11111'
