@@ -25,6 +25,7 @@ def getRoomInfo(roomid):
 	cursor = conn.execute(sql)
 	roominfo = list(cursor.fetchone())
 	return roominfo
+
 #example
 if __name__ == "__main__":
 	a = '11111'

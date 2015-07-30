@@ -1,11 +1,17 @@
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<title>聊天室</title>
 	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
     <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
     <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
-
+    <script src= '../static/js/jquery-1.10.1.js'></script>
+    <style>
+        .main.container {
+            padding-top:45px;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,25 +37,78 @@
     </div>
 
     <!-- Message -->
-    <div  id="message_section" class="ui column grid hide" style="display:none">
-        <div class="column">
-            <div class="circular ui button"><a href="/chatroom">返回列表</a></div>
-            <div class="ui piled blue segment">
-                <h2 class="ui header">
-                    #<i id="message_head">{{roominfo[1]}}</i>#
-                </h2>
-                <div id="message_list" class="ui comments">
-                    <!-- comments section -->
-                </div>
-                <div class="ui reply form">
-                    <div class="field">
-                        <input type="text" id="comment"/>
+    <div id="main" class="main container">
+        <div  id="message_section" class="ui column grid hide" >
+            <div class="column">
+                <div class="circular ui button"><a href="/chatroom">返回列表</a></div>
+                <div class="ui piled blue segment">
+                    <h2 class="ui header">
+                        #<i id="message_head">{{roominfo[1]}}</i>#
+                        <span style="visibility:hidden" id="roomid">{{roominfo[0]}}</span>
+                    </h2>
+                    <div id="message_list" class="ui comments">
+                        <!-- comments section -->
+                        
                     </div>
-                    <div id="submit" data="" class="ui fluid blue labeled submit icon button">
-                        <i class="icon edit"></i> 我也来说一句！
+                    <div class="ui reply form">
+                        <div class="field">
+                            <input type="text" id="msg"/>
+                        </div>
+                        <div id="submit" data="" class="ui fluid blue labeled submit icon button">
+                            <i class="icon edit"></i> 我也来说一句！
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    $(function () {
+
+      $("#submit").click(function (){
+        var msg = $("#msg").val();
+        $.post(
+          '/room/'+$("#roomid").html(),
+          {msg:msg},
+          function (data) {
+            $("#msg").val('');
+        });
+        return false;
+      });
+
+      var updater = {
+        poll: function(){
+          $.ajax({url: "/longpolling",
+            type: "POST",
+            dataType: "json",
+            success: updater.onSuccess,
+            error: updater.onError});
+        },
+        onSuccess: function(data, dataStatus){
+          //for (var p in data)
+            //console.log(p + ":" + data[p])
+          try{
+            if (data.msg != "") {
+              $("#message_list").append(data.name+": " + data.msg + "<br />");
+            }
+          }
+          catch(e){
+            updater.onError(e);
+            return;
+          }
+          updater.poll();
+        },
+        onError: function(e){
+          if (e.message)
+            console.log("Poll Error" + e.message);
+          else
+            console.log(e);
+        }
+      };
+  
+      updater.poll();
+    });
+  </script>
+</html>

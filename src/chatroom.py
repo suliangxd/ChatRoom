@@ -4,6 +4,11 @@ import tornado.web
 import tornado.ioloop
 import tornado.httpserver
 import tornado.options
+import json
+import tornado.web
+import tornado.gen
+import tornadoredis
+from tornado.escape import json_encode
 
 import os.path
 import sqlite3
@@ -15,6 +20,9 @@ from tornado.options import define, options
 
 conn = sqlite3.connect('chatroom.db')
 cur  = conn.cursor()
+
+c = tornadoredis.Client()
+c.connect()
 
 #显示所有聊天室的类
 class ChatRoomHandler(tornado.web.RequestHandler):
@@ -77,6 +85,7 @@ class ChatHandler(tornado.web.RequestHandler):
 	def get(self):
 		uri = self.request.uri
 		roomid = int(uri[-1])
+		self.set_secure_cookie("roomid", str(roomid),1)
 		cookie_user = self.get_secure_cookie("username")
 		if cookie_user:
 			usertype = common.get_usertype(cookie_user)
@@ -87,7 +96,14 @@ class ChatHandler(tornado.web.RequestHandler):
 		else:
 			self.render('login.html', cookieUser=None, Error = False)
 
+	@tornado.web.asynchronous
 	def post(self):
-		#print self.get_login_url()
-		#print self.reverse_url()
-		return
+		username = self.get_secure_cookie("username")
+		msg = self.get_argument("msg")
+		print '[get msg ok!] msg: ',msg
+		data = json_encode({'name':username, 'msg':msg})
+		roomchannel = str(self.get_secure_cookie('roomid'))
+		print roomchannel,type(roomchannel)
+		c.publish(roomchannel, data)
+		self.write(json_encode({'result':True}))
+		self.finish()

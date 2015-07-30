@@ -13,6 +13,7 @@ from chatroom import ChatRoomHandler, CreateRoomHandler, ChatHandler
 from login 	  import LoginHandler, LogoutHandler
 from register import RegisterHandler
 from user 	  import ModifyHandler, AdminHandler
+from longpolling import LongPollingHandler
 from tornado.options import define, options
 define("port", default=8000, help="run on given port", type=int)
 
@@ -26,7 +27,8 @@ class Application(tornado.web.Application):
 					(r'/modify', ModifyHandler),
 					(r'/admin', AdminHandler),
 					(r'/create', CreateRoomHandler),
-					(r'/room/\d*', ChatHandler)
+					(r'/room/\d*', ChatHandler),
+					(r'/longpolling',LongPollingHandler)
 					]
 		settings = dict(
 					cookie_secret =
