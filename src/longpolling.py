@@ -1,3 +1,5 @@
+#coding: utf-8
+
 import random
 import time
 import tornado.web
@@ -24,13 +26,11 @@ class LongPollingHandler(tornado.web.RequestHandler):
   def post(self):
     self.get_data()
 
-
   @tornado.gen.engine
   def subscribe(self):
     yield tornado.gen.Task(self.client.subscribe, self.get_roomchannel())
     self.client.listen(self.on_message)
   
-
   def get_data(self):
     if self.request.connection.stream.closed():
       return
@@ -38,7 +38,7 @@ class LongPollingHandler(tornado.web.RequestHandler):
     try :
       self.subscribe()
     except Exception, e :
-      print e, "[Exception: ]| longpolling.py+40"
+      print e, "[Exception: ]| longpolling.py+41"
       pass;
 
     num = 10
@@ -47,13 +47,12 @@ class LongPollingHandler(tornado.web.RequestHandler):
       lambda: self.on_timeout(num)
     )
 
-
   def on_timeout(self, num):
     self.time_handler = None
     self.send_data(json_encode({'name':'', 'msg':''}))
     if (self.client.connection.connected()):
       self.client.disconnect()
-  
+
   def send_data(self, data):
     if self.request.connection.stream.closed():
       return
@@ -63,7 +62,6 @@ class LongPollingHandler(tornado.web.RequestHandler):
     self.write(data)
     self.finish()
 
- 
   def on_message(self, msg):
     if (msg.kind == 'message'):
       self.send_data(str(msg.body))
@@ -76,7 +74,6 @@ class LongPollingHandler(tornado.web.RequestHandler):
       self.time_handler = None
 
   def on_finish(self):
-
     self.remove_time_handler()
     if (self.client.subscribed):
       self.client.unsubscribe(self.get_roomchannel());

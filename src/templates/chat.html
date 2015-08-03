@@ -66,8 +66,7 @@
 
 <script>
     $(function () {
-
-      $("#submit").click(function (){
+      function doSubmit() {
         var msg = $("#msg").val();
         $.post(
           '/room/'+$("#roomid").html(),
@@ -76,6 +75,12 @@
             $("#msg").val('');
         });
         return false;
+      }
+
+      $("#submit").click(doSubmit);
+      $("#msg").keydown(function(e) {
+        if(e.keyCode == 13)
+          doSubmit();
       });
 
       var updater = {
@@ -107,7 +112,7 @@
             console.log(e);
         }
       };
-  
+
       updater.poll();
     });
   </script>
