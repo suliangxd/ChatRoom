@@ -27,19 +27,21 @@ class LoginHandler(tornado.web.RequestHandler):
 
 	def get(self):
 		cookie_user = self.get_secure_cookie("username")
-		self.render('login.html',cookieUser=cookie_user)
+		self.render('login.html',cookieUser=cookie_user,Error=False)
 			
 	def post(self):
 		username = self.get_argument('username')
 		password = self.get_argument('password')
 		if self.check_user(username, password): #密码正确
+			#print "ok!!!"
 			self.set_secure_cookie("username", username,1)
 			cookie_user = self.get_argument('username')
-			self.render('login.html', cookieUser=cookie_user)
+			self.render('login.html', cookieUser=cookie_user,Error=False)
 
 		else: #密码错误
-			self.write("用户名或密码错误,重新登录")
-			self.render('login.html',cookieUser=None)
+			#print "nono!!"
+			#self.write("用户名或密码错误,重新登录")
+			self.render('login.html',cookieUser=None,Error=True)
 #注销
 class LogoutHandler(tornado.web.RequestHandler):
 	def get(self):

@@ -104,6 +104,8 @@ class ChatHandler(tornado.web.RequestHandler):
 		print '[get msg ok!] msg: ',msg
 		data = json_encode({'name':username, 'msg':msg})
 		roomchannel = str(self.get_secure_cookie('roomid'))
+		#收到将消息publish到Redis
+		print data 
 		c.publish(roomchannel, data)
 		self.write(json_encode({'result':True}))
 		self.finish()

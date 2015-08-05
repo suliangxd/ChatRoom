@@ -2,6 +2,7 @@
 
 import random
 import time
+import sys
 import tornado.web
 import tornado.gen
 import tornadoredis
@@ -10,6 +11,7 @@ from tornado.escape import json_encode
 
 class LongPollingHandler(tornado.web.RequestHandler):
 
+  #连接到Redis 
   def initialize(self):
     self.client = tornadoredis.Client()
     self.client.connect()
@@ -26,6 +28,7 @@ class LongPollingHandler(tornado.web.RequestHandler):
   def post(self):
     self.get_data()
 
+  #订阅Redis的消息
   @tornado.gen.engine
   def subscribe(self):
     yield tornado.gen.Task(self.client.subscribe, self.get_roomchannel())
@@ -38,10 +41,11 @@ class LongPollingHandler(tornado.web.RequestHandler):
     try :
       self.subscribe()
     except Exception, e :
-      print e, "[Exception: ]| longpolling.py+41"
+      print e,__file__,sys._getframe().f_lineon
       pass;
 
-    num = 10
+    #设置超时时间为60s
+    num = 60
     self.time_handler = tornado.ioloop.IOLoop.instance().add_timeout(
       time.time()+num,
       lambda: self.on_timeout(num)
@@ -52,16 +56,18 @@ class LongPollingHandler(tornado.web.RequestHandler):
     self.send_data(json_encode({'name':'', 'msg':''}))
     if (self.client.connection.connected()):
       self.client.disconnect()
-
+  
+  #发送响应 
   def send_data(self, data):
     if self.request.connection.stream.closed():
       return
 
     self.set_header('Content-Type', 'application/json; charset=UTF-8')
-    print "set-data: ",data
+    #print "set-data: ",data
     self.write(data)
     self.finish()
 
+  #收到了Redis的消息
   def on_message(self, msg):
     if (msg.kind == 'message'):
       self.send_data(str(msg.body))

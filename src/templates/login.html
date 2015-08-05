@@ -35,6 +35,21 @@
 
 <body>
 	{%if not cookieUser%}
+    {%if Error%}
+    <div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">登录失败</h3>
+                        <h4><b>用户名或密码错误</b></h4> <br><br>
+                        <a href='/login'> 返回 </a>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+    {%else%}
     <div class="ui fixed transparent inverted main menu">
         <div class="container">
             <div class="title item">
@@ -86,6 +101,7 @@
         </div>
     </div>
     </footer>
+    {%end%}
 	{%else%}
 		<!-- 跳转进入聊天室-->
 		<meta http-equiv="refresh" content="0; /chatroom">

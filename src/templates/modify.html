@@ -2,17 +2,19 @@
 <head>
 	<meta charset="utf-8">
 	<title>注册</title>
+	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
 	<script type="text/javascript">
 
 		function vaildateForm() {
-			//var username = document.forms["registerForm"]["username"].value;
 			var password = document.forms["registerForm"]["password"].value;
 			var rep_password = document.forms["registerForm"]["rep_password"].value;
 			var email = document.forms["registerForm"]["email"].value;
 			var phone = document.forms["registerForm"]["phone"].value;
-			var reg_filter=/^s*[.A-Za-z0-9_-]{4,20}s*$/;
+			var reg_filter=/^s*[.A-Za-z0-9_-]{3,20}s*$/;
 			if (!reg_filter.test(username)){
-				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于4个字符，不超过20个字符，注意不要使用空格");
+				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于3个字符，不超过20个字符，注意不要使用空格");
 				return false;
 			}
 			if (password == null || password == ""){
@@ -62,21 +64,56 @@
 	</script>
 </head>
 
-<body >
-	<form name="registerForm"  action="" onsubmit="return vaildateForm();" onreset="reset()" method="post">
-		<h1>修改个人信息</h1><br><br>
-		用户名： {{cookieUser}}<br>
-		密码： 
-		<input type="password" name="password" id="password" size="24"  maxlength="24"></br></input>
-		重复密码：
-		<input type="password" name="rep_password" id="rep_password" size="24"  maxlength="24"></br></input>
-		邮箱：  
-		<input type="text" name="email" id="email" size="24"  maxlength="24"></br></input>
-		手机：  
-		<input type="text" name="phone" id="phone" size="24"  maxlength="24"></br></input>
-		
-		<input type="submit" value="提交" id="submit">
-		<input type="reset"  value="重置" id="reset">
-	</form>
+<body>
+	<div class="ui fixed transparent inverted main menu">
+        <div class="container">
+            <div class="title item">
+                <b>{{cookieUser}}&nbsp</b> 在线聊天系统 
+            </div>
+
+            <div class="right menu">
+                <div class="title item">
+                    &nbsp<b><a href="/chatroom"> 返回 </a></b>
+                    &nbsp<b><a href="/logout"> 注销 </a></b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">修改个人信息</h3>
+						<form name="registerForm"  action="/modify" onsubmit="return vaildateForm();" onreset="reset()" method="post">
+							<div class="field">
+                        		<label>用户名： {{cookieUser}}</label>
+                    		</div>
+							<div class="field">
+                        		<label>新密码</label>
+                        		<input name="password" id="password" type="password">
+                    		</div>
+							<div class="field">
+                        		<label>重复密码</label>
+                        		<input name="rep_password" id="rep_password" type="password">
+                    		</div>
+							<div class="field">
+                        		<label>邮箱</label>
+                        		<input name="email" id="email" type="text">
+                    		</div>
+							<div class="field">
+                        		<label>手机号码</label>
+                        		<input name="phone" id="phone" type="text">
+                    		</div>
+							<input type="submit" value="提交" id="submit" class="ui blue login_submit button">
+							&nbsp &nbsp &nbsp
+							<input type="reset"  value="重置" id="reset" class="ui blue login_submit button">
+                  		</form>
+				</div>
+    		</div>
+		</div>
+	</div>
+</div>
 </body>
 <html>
