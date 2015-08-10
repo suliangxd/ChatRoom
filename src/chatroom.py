@@ -85,7 +85,7 @@ class ChatHandler(tornado.web.RequestHandler):
 	def get(self):
 		uri_list = self.request.uri.split('/')
 		roomid = int(uri_list[-1])
-		print 'roomid: ',roomid
+		#print 'roomid: ',roomid
 		self.set_secure_cookie("roomid", str(roomid),1)
 		cookie_user = self.get_secure_cookie("username")
 		if cookie_user:
@@ -101,11 +101,11 @@ class ChatHandler(tornado.web.RequestHandler):
 	def post(self):
 		username = self.get_secure_cookie("username")
 		msg = self.get_argument("msg")
-		print '[get msg ok!] msg: ',msg
+		#print '[get msg ok!] msg: ',msg
 		data = json_encode({'name':username, 'msg':msg})
 		roomchannel = str(self.get_secure_cookie('roomid'))
 		#收到将消息publish到Redis
-		print data 
+		#print data 
 		c.publish(roomchannel, data)
 		self.write(json_encode({'result':True}))
 		self.finish()

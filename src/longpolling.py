@@ -36,6 +36,7 @@ class LongPollingHandler(tornado.web.RequestHandler):
   
   def get_data(self):
     if self.request.connection.stream.closed():
+      print '***** closed and maybe lost!!!!! *****'
       return
        
     try :

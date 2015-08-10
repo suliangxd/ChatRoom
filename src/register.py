@@ -34,8 +34,8 @@ class RegisterHandler(tornado.web.RequestHandler):
 		username = self.get_argument('username')
 		password = self.get_argument('password')
 		rep_password = self.get_argument('rep_password')
-		email = self.get_argument('email')
-		phone = self.get_argument('phone')
+		email = self.get_argument('email','null')
+		phone = self.get_argument('phone','null')
 		if password != rep_password:
 			self.write("两次密码输入不一致")
 			self.render('register.html')

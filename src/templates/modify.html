@@ -1,22 +1,19 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>注册</title>
+	<title>修改</title>
 	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
     <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
     <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
 	<script type="text/javascript">
 
 		function vaildateForm() {
-			var password = document.forms["registerForm"]["password"].value;
-			var rep_password = document.forms["registerForm"]["rep_password"].value;
-			var email = document.forms["registerForm"]["email"].value;
-			var phone = document.forms["registerForm"]["phone"].value;
+			var password = document.forms["ModifyForm"]["password"].value;
+			var rep_password = document.forms["ModifyForm"]["rep_password"].value;
+			var email = document.forms["ModifyForm"]["email"].value;
+			var phone = document.forms["ModifyForm"]["phone"].value;
 			var reg_filter=/^s*[.A-Za-z0-9_-]{3,20}s*$/;
-			if (!reg_filter.test(username)){
-				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于3个字符，不超过20个字符，注意不要使用空格");
-				return false;
-			}
+
 			if (password == null || password == ""){
 				alert("密码不能为空");
 				return false;
@@ -38,6 +35,7 @@
 				alert("手机不能为空");
 				return false;
 			}
+			/*
 			var phone_reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
 			if (!phone_reg.test(phone)){
 				alert("请输入有效的手机号");
@@ -49,6 +47,7 @@
 			  alert("请输入有效的邮箱地址");
 			  return false;
 			}
+			*/
 			if (password != rep_password){
 				alert("密码不匹配");
 				return false;
@@ -86,7 +85,7 @@
             <div class="column">
                 <div class="ui fluid form segment">
                     <h3 class="ui header">修改个人信息</h3>
-						<form name="registerForm"  action="/modify" onsubmit="return vaildateForm();" onreset="reset()" method="post">
+						<form name="ModifyForm"  action="/modify" onsubmit="return vaildateForm();" onreset="reset()" method="post">
 							<div class="field">
                         		<label>用户名： {{cookieUser}}</label>
                     		</div>

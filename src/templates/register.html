@@ -34,6 +34,7 @@
 				alert("重复密码不能为空");
 				return false;
 			}
+			/*
 			if (email == null || email == ""){
 				alert("邮箱不能为空");
 				return false;
@@ -53,7 +54,7 @@
 			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){
 			  alert("请输入有效的邮箱地址");
 			  return false;
-			}
+			}*/
 			if (password != rep_password){
 				alert("密码不匹配");
 				return false;
@@ -64,8 +65,10 @@
 			$('#username').val('');
 			$('#password').val('');
 			$('#rep_password').val('');
+			/*
 			$('#email').val('');
 			$('#phone').val('');
+			*/
 		}
 	</script>
 </head>
@@ -111,18 +114,10 @@
                         		<label>重复密码</label>
                         		<input name="rep_password" id="rep_password" type="password">
                     		</div>
-							<div class="field">
-                        		<label>邮箱</label>
-                        		<input name="email" id="email" type="text">
-                    		</div>
-							<div class="field">
-                        		<label>手机号码</label>
-                        		<input name="phone" id="phone" type="text">
-                    		</div>
 							<div class="inline field">
 		                        <div class="ui checkbox">
 		                            <input type="checkbox" id="terms">
-		                            <label for="terms">我同意mikesu's WeChat网的服务条款。</label>
+		                            <label for="terms">我同意ChatRoom的服务条款。</label>
 		                        </div>
                     		</div>
 							<input type="submit" value="提交" id="submit" class="ui blue login_submit button">
