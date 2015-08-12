@@ -28,7 +28,7 @@ then open your browser and type http://127.0.0.1:8000
 ###Login    
 ![Login] (http://pic.sueri.cn/di-J5QC.jpg)   
 ###chatroom
-![ChatRoom] (http://pic.sueri.cn/di-F50G.jpg)
+![ChatRoom] (http://pic.sueri.cn/di-O5Y6.png)
 ###chat   
 ![Chat] (http://pic.sueri.cn/di-IGVR.jpg)
 
