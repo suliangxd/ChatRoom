@@ -16,7 +16,7 @@
 4. sqlite3   
   
 ###Start    
-$ git clone git@github.com:suliangxd/ChatRoom.git   
+$ git clone https://githup.com/suliangxd/ChatRoom.git   
 $ cd ChatRoom      
 $ cd src    
 $ redis-server  （开启redis服务）          
