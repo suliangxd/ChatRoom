@@ -9,6 +9,8 @@ def get_usertype(username):
 	sql = "select usertype from user where username = '%s' limit 1" %(username)
 	cur.execute(sql)
 	usertype = cur.fetchone()
+	if not usertype:
+		return None
 	return usertype[0]
 #获取room表中的所有数据,返回[roomlist,room_owner]
 def getRoomList():

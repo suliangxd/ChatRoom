@@ -9,6 +9,7 @@ import sqlite3
 import datetime
 import time
 
+import common
 from tornado.options import define, options
 
 conn = sqlite3.connect('chatroom.db')
@@ -44,29 +45,40 @@ class ModifyHandler(tornado.web.RequestHandler):
 class AdminHandler(tornado.web.RequestHandler):
 
 	def get(self):
-		self.render("admin.html")
+		cookie_user = self.get_secure_cookie("username")
+		if cookie_user is None:
+			self.redirect('/login')
+		else:
+			usertype = common.get_usertype(cookie_user)
+			self.render("admin.html",userType=usertype)
+		
 	def post(self):
 		setvip_username = self.get_argument("username1", None);
 		cancelvip_username = self.get_argument("username2", None);
 		delete_username = self.get_argument("username3", None);
+		cookie_user = self.get_secure_cookie("username")
+		if cookie_user is None:
+			self.redirect('/login')
+		else:
+			usertype = common.get_usertype(cookie_user)
 		if setvip_username:
 			sql = "update user set usertype = 1 where username = '%s' " %(setvip_username);
 			conn.execute(sql)
 			conn.commit()
 			self.write("设置成功")
-			self.render("admin.html")
+			self.render("admin.html",userType=usertype)
 		if cancelvip_username:
 			sql = "update user set usertype = 0 where username = '%s' " %(cancelvip_username)
 			conn.execute(sql)
 			conn.commit()
 			self.write("取消成功")
-			self.render("admin.html")
+			self.render("admin.html",userType=usertype)
 		if delete_username:
 			sql = "delete from user where username = '%s' " %(delete_username)
 			conn.execute(sql)
 			conn.commit()
 			self.write("删除成功")
-			self.render("admin.html")
+			self.render("admin.html",userType=usertype)
 
 
 if __name__ == '__main__':

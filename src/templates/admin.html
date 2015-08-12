@@ -2,6 +2,9 @@
 <heda>
 	<meta charset="utf-8">
 	<title>管理</title>
+	<link rel="stylesheet" class="ui" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/body.css"/>
+    <link rel="stylesheet" class="ui" href="/static/css/chat.css"/>
 	<script type="text/javascript">
 
 		function check(username){
@@ -32,6 +35,7 @@
 </heda>
 
 <body>
+<!-- 
 	<h1>管理员</h1>
 	<form name="setVIPForm"  action="/admin" onsubmit="return vaildateForm1();" method="post">
 		<b>设置用户为vip</b>
@@ -51,5 +55,49 @@
 		<input type="submit" value="提交" id="submit">
 	</form>
 	<br>
-	<a href='/chatroom'>返回聊天室</a>	
+	<a href='/chatroom'>返回聊天室</a>
+!-->
+{%if userType == 2%}
+	<div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">管理</h3>
+                  		<form name="setVIPForm"  action="/admin" onsubmit="return vaildateForm1();" method="post">
+							<label>设置用户为VIP</label>
+							<input type="text" name="username1" id="username1">
+							<input type="submit" value="提交" id="submit">
+						</form>
+						<form name="cancelVIPForm" action="/admin" onsubmit="return validateForm2();" method="post">
+							<label>取消用户为vip</label>
+							<input type="text" name="username2" id="username2">
+							<input type="submit" value="提交" id="submit">
+						</form>
+						<form name="deleteUserForm" action="/admin" onsubmit="return validateForm3();" method="post">
+							<label>删除用户</label>
+							<input type="text" name="username3" id="username3">
+							
+							<input type="submit" value="提交" id="submit" >
+						</form>
+						<a href='/chatroom'>返回聊天室</a>
+				</div>
+    		</div>
+		</div>
+	</div>
+</div>
+{%else%}
+<div id="wrapper" style="display: block; z-index: 998;">
+    <div class="container">
+        <div id="login" class="ui two column relaxed grid">
+            <div class="column">
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">无权限</h3>
+                	<a href='/chatroom'>返回聊天室</a>  
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+{%end%}	
 </body>
