@@ -14,7 +14,7 @@
 2. tornado
 3. redis server
 4. sqlite3   
-    
+  
 ###Start    
 $ git clone git@github.com:suliangxd/ChatRoom.git   
 $ cd ChatRoom      
@@ -23,14 +23,6 @@ $ redis-server  （开启redis服务）
 $ python init_sqlite.py（初始化数据库）      
 $ python server.py    
 then open your browser and type http://127.0.0.1:8000       
-##Screenshots     
---
-###Login    
-![Login] (http://pic.sueri.cn/di-J5QC.jpg)   
-###chatroom
-![ChatRoom] (http://pic.sueri.cn/di-O5Y6.png)
-###chat   
-![Chat] (http://pic.sueri.cn/di-IGVR.jpg)
 
 ##开发说明
 ###功能结构图
@@ -51,3 +43,14 @@ then open your browser and type http://127.0.0.1:8000
 **架构图 V1.0**     
 ![jiagou1.0](http://i.niupic.com/images/2015/08/05/55c1775f7bed6.jpg)
 
+##Screenshots     
+--
+###Login    
+
+![Login] (http://pic.sueri.cn/di-J5QC.jpg)   
+###chatroom
+
+![ChatRoom] (http://pic.sueri.cn/di-O5Y6.png)
+###chat   
+
+![Chat] (http://pic.sueri.cn/di-IGVR.jpg)
