@@ -41,7 +41,27 @@
 </heda>
 
 <body>
-{%if userType == 2%}
+<div class="ui fixed transparent inverted main menu">
+		<div class="container">
+            <div class="title item">
+                <b>{{cookieUser}}&nbsp</b> 在线聊天系统 
+            </div>
+
+            <div class="right menu">
+                <div class="title item">
+                    {%if usertype == 2%}
+						<b><a href='/admin'>管理</a></b>
+					{%end%}
+					{%if usertype != -1%}
+						&nbsp <b><a href='/create'>创建聊天室</a></b>
+					{%end%}
+                    &nbsp<b><a href="/modify"> 修改个人信息 </a></b>
+                    &nbsp<b><a href="/logout"> 注销 </a></b>
+                </div>
+            </div>
+        </div>
+</div>
+{%if usertype == 2%}
 	<div id="wrapper" style="display: block; z-index: 998;">
     <div class="container">
         <div id="login" class="ui two column relaxed grid">

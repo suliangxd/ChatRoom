@@ -26,11 +26,10 @@ def getRoomList():
 #根据房间id，找出房间具体信息
 def getRoomInfo(roomid):
 	#check roomid是否合法
-	sql = "select MAX(roomid) from room"
+	sql = "select * from room where roomid = %d" % (roomid)
 	cursor = conn.execute(sql)
 	ret = cursor.fetchone()
-	Max_roomid = ret[0]
-	if roomid<=0 or roomid>Max_roomid:
+	if ret is None:
 		return None
 		
 	#roomid is [1,Max_roomid]	

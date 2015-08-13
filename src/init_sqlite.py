@@ -28,6 +28,14 @@ CREATE TABLE IF NOT EXISTS room(
     UNIQUE("roomname")
 );
 
+CREATE TABLE IF NOT EXISTS message(
+	"msgid" integer PRIMARY KEY AUTOINCREMENT,
+	"roomid" integer NOT NULL,
+	"username" varchar(25) NOT NULL,
+	"msg" varchar(500) NOT NULL,
+	"created_time" datetime DEFAULT NULL,
+	"reverse1" varchar(50) DEFAULT NULL
+);
 COMMIT;
 """
 

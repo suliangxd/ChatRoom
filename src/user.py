@@ -50,7 +50,7 @@ class AdminHandler(tornado.web.RequestHandler):
 			self.redirect('/login')
 		else:
 			usertype = common.get_usertype(cookie_user)
-			self.render("admin.html",userType=usertype)
+			self.render("admin.html",usertype=usertype,cookieUser=cookie_user)
 		
 	def post(self):
 		setvip_username = self.get_argument("username1", None)

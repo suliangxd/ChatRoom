@@ -85,7 +85,7 @@ class ChatHandler(tornado.web.RequestHandler):
 	def get(self):
 		uri_list = self.request.uri.split('/')
 		roomid = int(uri_list[-1])
-		#print 'roomid: ',roomid
+
 		self.set_secure_cookie("roomid", str(roomid),1)
 		cookie_user = self.get_secure_cookie("username")
 		if cookie_user:
@@ -94,10 +94,17 @@ class ChatHandler(tornado.web.RequestHandler):
 			if roominfo is None:
 				#跳转404
 				self.render("404err.html")
+			#成功合法跳转某聊天房
 			else:
-				print '[roominfo]:',roominfo
+				sql = "select username,msg,created_time from message where roomid = %d order by msgid \
+						desc limit 100" % (roomid)
+				cursor = conn.execute(sql)
+				#最近50条聊天记录
+				msginfoList = list(cursor.fetchall())
+				msginfoList.reverse()
+				
 				self.render('chat.html', cookieUser=cookie_user, usertype = usertype,
-							roominfo=roominfo)
+							roominfo=roominfo, msginfo=msginfoList)
 		else:
 			self.render('login.html', cookieUser=None, Error = False)
 
@@ -108,8 +115,15 @@ class ChatHandler(tornado.web.RequestHandler):
 		#print '[get msg ok!] msg: ',msg
 		data = json_encode({'name':username, 'msg':msg})
 		roomchannel = str(self.get_secure_cookie('roomid'))
+		#持久化
+		sql = "insert into message(roomid,username,msg,created_time)\
+			   values(%d,'%s','%s',datetime('now'))" % (int(roomchannel),username,msg)
+		conn.execute(sql)
+		conn.commit()
+
 		#收到将消息publish到Redis
-		#print data 
+		#print data
 		c.publish(roomchannel, data)
+		
 		self.write(json_encode({'result':True}))
 		self.finish()
