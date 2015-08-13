@@ -53,9 +53,10 @@ class AdminHandler(tornado.web.RequestHandler):
 			self.render("admin.html",userType=usertype)
 		
 	def post(self):
-		setvip_username = self.get_argument("username1", None);
-		cancelvip_username = self.get_argument("username2", None);
-		delete_username = self.get_argument("username3", None);
+		setvip_username = self.get_argument("username1", None)
+		cancelvip_username = self.get_argument("username2", None)
+		delete_username = self.get_argument("username3", None)
+		delete_roomname = self.get_argument("roomname", None)
 		cookie_user = self.get_secure_cookie("username")
 		if cookie_user is None:
 			self.redirect('/login')
@@ -79,7 +80,11 @@ class AdminHandler(tornado.web.RequestHandler):
 			conn.commit()
 			self.write("删除成功")
 			self.render("admin.html",userType=usertype)
-
+		if delete_roomname:
+			sql = "delete from room where roomname = '%s' " %(delete_roomname)
+			conn.execute(sql)
+			conn.commit()
+			self.redirect("/chatroom")
 
 if __name__ == '__main__':
 	define("port", default=8000, help="run on given port", type=int)

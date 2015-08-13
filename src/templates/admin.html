@@ -31,32 +31,16 @@
 			var username = document.forms["deleteUserForm"]["username"].value;
 			return check(username);
 		}
+		function validateForm4() {
+			var roomname = document.forms["deleteRoomForm"]["roomname"].value;
+			if (roomname==null || roomname=="")
+				return false;
+			return true;
+		}
 	</script>
 </heda>
 
 <body>
-<!-- 
-	<h1>管理员</h1>
-	<form name="setVIPForm"  action="/admin" onsubmit="return vaildateForm1();" method="post">
-		<b>设置用户为vip</b>
-		<input type="text" name="username1" id="username1" size="24"  maxlength="24">&nbsp</input>
-		<input type="submit" value="提交" id="submit">
-	</form>
-
-	<form name="cancelVIPForm" action="/admin" onsubmit="return validateForm2();" method="post">
-		<b>取消用户为vip</b>
-		<input type="text" name="username2" id="username2" size="24"  maxlength="24">&nbsp</input>
-		<input type="submit" value="提交" id="submit">
-	</form>
-
-	<form name="deleteUserForm" action="/admin" onsubmit="return validateForm3();" method="post">
-		<b>删除用户</b>
-	<input type="text" name="username3" id="username3" size="24"  maxlength="24">&nbsp&nbsp&nbsp</input>
-		<input type="submit" value="提交" id="submit">
-	</form>
-	<br>
-	<a href='/chatroom'>返回聊天室</a>
-!-->
 {%if userType == 2%}
 	<div id="wrapper" style="display: block; z-index: 998;">
     <div class="container">
@@ -66,17 +50,24 @@
                     <h3 class="ui header">管理</h3>
                   		<form name="setVIPForm"  action="/admin" onsubmit="return vaildateForm1();" method="post">
 							<label>设置用户为VIP</label>
-							<input type="text" name="username1" id="username1">
+							<input type="text" name="username1" id="username1" placeholder="用户名">
 							<input type="submit" value="提交" id="submit">
 						</form>
 						<form name="cancelVIPForm" action="/admin" onsubmit="return validateForm2();" method="post">
 							<label>取消用户为vip</label>
-							<input type="text" name="username2" id="username2">
+							<input type="text" name="username2" id="username2" placeholder="用户名">
 							<input type="submit" value="提交" id="submit">
 						</form>
 						<form name="deleteUserForm" action="/admin" onsubmit="return validateForm3();" method="post">
 							<label>删除用户</label>
-							<input type="text" name="username3" id="username3">
+							<input type="text" name="username3" id="username3" placeholder="用户名">
+							
+							<input type="submit" value="提交" id="submit" >
+						</form>
+						<!-- 删除room功能!-->
+						<form name="deleteRoomForm" action="/admin" onsubmit="return validateForm4();" method="post">
+							<label>删除聊天室</label>
+							<input type="text" name="roomname" id="roomname" placeholder="聊天室名">
 							
 							<input type="submit" value="提交" id="submit" >
 						</form>
