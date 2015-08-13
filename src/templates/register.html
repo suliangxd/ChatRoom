@@ -17,9 +17,9 @@
 				alert("用户名不能为空");
 				return false;
 			}
-			var reg_filter=/^s*[.A-Za-z0-9_-]{3,20}s*$/;
+			var reg_filter=/^s*[.A-Za-z0-9_-]{3,15}s*$/;
 			if (!reg_filter.test(username)){
-				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于4个字符，不超过20个字符，注意不要使用空格");
+				alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于3个字符，不超过15个字符，注意不要使用空格");
 				return false;
 			}
 			if (password == null || password == ""){
@@ -135,8 +135,8 @@
         <div id="login" class="ui two column relaxed grid">
             <div class="column">
                 <div class="ui fluid form segment">
-                    <h3 class="ui header">注册失败</h3>
-                        <h4><b>用户名重复</b></h4> <br><br>
+                    <h3 class="ui header" color="red" style="color: red;">注册失败</h3>
+                        <h3><b>用户名重复</b></h3>
                         <a href='/register'> 重新注册 </a>
                 </div>
             </div>

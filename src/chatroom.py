@@ -91,9 +91,13 @@ class ChatHandler(tornado.web.RequestHandler):
 		if cookie_user:
 			usertype = common.get_usertype(cookie_user)
 			roominfo = common.getRoomInfo(roomid)
-			print roominfo
-			self.render('chat.html', cookieUser=cookie_user, usertype = usertype,
-						roominfo=roominfo)
+			if roominfo is None:
+				#跳转404
+				self.render("404err.html")
+			else:
+				print '[roominfo]:',roominfo
+				self.render('chat.html', cookieUser=cookie_user, usertype = usertype,
+							roominfo=roominfo)
 		else:
 			self.render('login.html', cookieUser=None, Error = False)
 

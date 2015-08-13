@@ -45,4 +45,5 @@ if __name__ == "__main__":
 	http_server = tornado.httpserver.HTTPServer(Application())
 	http_server.listen(options.port)
 	print 'http://localhost:8000'
+	tornado.options.parse_command_line()
 	tornado.ioloop.IOLoop.instance().start()
