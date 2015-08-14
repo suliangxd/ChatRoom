@@ -47,7 +47,7 @@ class RegisterHandler(tornado.web.RequestHandler):
 			conn.commit()
 			self.write("注册成功")
 			#time.sleep(1.5)
-			self.set_secure_cookie("username", username,1)
+			self.set_secure_cookie("username", username,0.1)
 			cookie_user = self.get_argument('username')
 			self.render('login.html', cookieUser=cookie_user)
 		else:

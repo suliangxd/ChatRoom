@@ -27,6 +27,9 @@ c.connect()
 #显示所有聊天室的类
 class ChatRoomHandler(tornado.web.RequestHandler):
 
+	def get_current_user(self):
+		return self.get_secure_cookie("username")
+
 	def get(self):
 		cookie_user = self.get_secure_cookie("username")
 		roomlist = common.getRoomList()
