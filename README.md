@@ -1,9 +1,8 @@
 # ChatRoom web聊天室        
 体验：http://120.27.28.160:8111/            
-体验帐号：admin  密码：admin
+体验帐号：admin  密码：admin            
 基于tornado框架 + sqlite3 + redis 
-
-    多聊天室，多人实时聊天
+多聊天室，多人实时聊天
 ##开发环境
 **开发语言:**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[python](https://www.python.org/)        
 **web服务器:**&nbsp;[tornado](http://www.tornadoweb.org/en/stable/)    
