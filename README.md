@@ -1,5 +1,6 @@
 # ChatRoom web聊天室        
-~~体验： http://120.25.0.104:8000/~~        
+体验： http://   http://120.27.28.160:8111/
+体验帐号：admin  密码：admin
 基于tornado框架 + sqlite3 + redis 
 
     多聊天室，多人实时聊天
@@ -20,7 +21,8 @@ $ git clone https://githup.com/suliangxd/ChatRoom.git
 $ cd ChatRoom      
 $ cd src    
 $ redis-server  （开启redis服务）          
-$ python init_sqlite.py（初始化数据库）      
+$ python init_sqlite.py（初始化数据库）
+$ python add_admin.py (添加管理员脚本)
 $ python server.py    
 then open your browser and type http://127.0.0.1:8000       
 
