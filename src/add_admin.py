@@ -1,6 +1,6 @@
 import sqlite3
 
-print "**********   add admin 【请确保用户名和密码都是5位以上！！！】    **********\n"
+print "**********    add admin    [ make sure the length of username and password more than 5!!! ]**********\n"
 username=raw_input('username: ')
 password=raw_input('password: ')
 
