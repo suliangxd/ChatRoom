@@ -10,7 +10,7 @@
 **缓存数据库:**&nbsp;&nbsp;[redis](http://redis.io/)    
 ##Quick Start at local    
 ###依赖组件：   
-1. python 2.7
+1. python 2.7+
 2. tornado
 3. redis server
 4. sqlite3   
