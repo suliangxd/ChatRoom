@@ -4,13 +4,13 @@
 基于tornado框架 + sqlite3 + redis 
 多聊天室，多人实时聊天
 ##开发环境
-**开发语言:**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[python](https://www.python.org/)        
+**开发语言:**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[python2.7](https://www.python.org/)        
 **web服务器:**&nbsp;[tornado](http://www.tornadoweb.org/en/stable/)    
 **数据库:**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[sqlite](https://www.sqlite.org/)     
 **缓存数据库:**&nbsp;&nbsp;[redis](http://redis.io/)    
 ##Quick Start at local    
 ###依赖组件：   
-1. python 2.7+
+1. python 2.7
 2. tornado
 3. redis server
 4. sqlite3   
