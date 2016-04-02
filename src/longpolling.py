@@ -36,13 +36,13 @@ class LongPollingHandler(tornado.web.RequestHandler):
   
   def get_data(self):
     if self.request.connection.stream.closed():
-      print '***** closed and maybe lost!!!!! *****'
+      print('***** closed and maybe lost!!!!! *****')
       return
        
     try :
       self.subscribe()
     except Exception, e :
-      print e,__file__,sys._getframe().f_lineon
+      print(e,__file__,sys._getframe().f_lineon)
       pass;
 
     #设置超时时间为60s

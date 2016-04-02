@@ -42,4 +42,4 @@ def getRoomInfo(roomid):
 #example
 if __name__ == "__main__":
 	a = '11111'
-	print get_usertype(a)
+	print(get_usertype(a))

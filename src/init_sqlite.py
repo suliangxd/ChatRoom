@@ -43,7 +43,7 @@ try:
 	cur.executescript(command)
 	con.commit()
 except Exception as e:
-	print e
+	print(e)
 
 cur.close()
 con.close()
