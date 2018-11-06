@@ -3,19 +3,20 @@
 体验帐号：admin  密码：admin            
 基于tornado框架 + sqlite3 + redis 
 多聊天室，多人实时聊天
-##开发环境
+## 开发环境
 **开发语言:**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[python2.7](https://www.python.org/)        
 **web服务器:**&nbsp;[tornado](http://www.tornadoweb.org/en/stable/)    
 **数据库:**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[sqlite](https://www.sqlite.org/)     
 **缓存数据库:**&nbsp;&nbsp;[redis](http://redis.io/)    
-##Quick Start at local    
-###依赖组件：   
+## Quick Start at local    
+### 依赖组件：   
 1. python 2.7+
 2. tornado
 3. redis server
 4. sqlite3   
   
-###Start    
+### Start
+```
 $ git clone https://githup.com/suliangxd/ChatRoom.git   
 $ cd ChatRoom      
 $ cd src    
@@ -23,10 +24,11 @@ $ redis-server  （开启redis服务）
 $ python init_sqlite.py（初始化数据库）
 $ python add_admin.py (添加管理员脚本)
 $ python server.py    
-then open your browser and type http://127.0.0.1:8000       
+then open your browser and type http://127.0.0.1:8000 
+```
 
-##开发说明
-###功能结构图
+## 开发说明
+### 功能结构图
 **version 1.0**
 ![fun](http://i.niupic.com/images/2015/08/04/55c0a1aac44c8.jpg)
 ##实时聊天功能基本架构
@@ -44,14 +46,14 @@ then open your browser and type http://127.0.0.1:8000
 **架构图 V1.0**     
 ![jiagou1.0](http://i.niupic.com/images/2015/08/05/55c1775f7bed6.jpg)
 
-##Screenshots     
+## Screenshots     
 --
-###Login    
+### Login    
 
 ![Login] (http://pic.sueri.cn/di-J5QC.jpg)   
-###chatroom
+### chatroom
 
 ![ChatRoom] (http://pic.sueri.cn/di-O5Y6.png)
-###chat   
+### chat   
 
 ![Chat] (http://pic.sueri.cn/di-IGVR.jpg)
